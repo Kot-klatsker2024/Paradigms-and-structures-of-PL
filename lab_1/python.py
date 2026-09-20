@@ -1,0 +1,60 @@
+import sys
+import math
+
+def get_coef(promt, index):
+
+    try:
+        coef_str = sys.argv[index]
+    except:
+        print(promt)
+        coef_str = input()
+
+    coef = float(coef_str)
+    return coef
+
+def get_roots(a, b, c):
+
+    result = []
+
+    D = b**2 - 4*a*c
+    if D == 0:
+        root = -b/(2.0*a)
+        result.append(root)
+    if D > 0:
+        root_y1 = (-b - math.sqrt(D))/(2.0*a)
+        root_y2 = (-b + math.sqrt(D))/(2.0*a)
+        if root_y1 >=0:
+            root1 = math.sqrt(root_y1)
+            root2 = -root1
+            result.append(root1)
+            result.append(root2)
+        if root_y2 >= 0:
+            root3 = math.sqrt(root_y2)
+            root4 = -root3
+            result.append(root3)
+            result.append(root4)
+    unique_result = list(set(result))
+    return unique_result
+
+def main():
+
+    a = get_coef("Введите коэффициент А", 1)
+    b = get_coef("Введите коэффициент В", 2)
+    c = get_coef("Введите коэффициент С", 3)
+
+    roots = get_roots(a, b, c)
+
+    if not roots:
+        print("Корней нет")
+    else:
+        i = 0
+        while i != len(roots):
+            print(f"x{1 + i} = {roots[i]}\n")
+            i += 1
+
+if __name__ == "__main__":
+    main()
+        
+
+        
+

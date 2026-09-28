@@ -1,16 +1,15 @@
-import sys
 import math
 
-def get_coef(promt, index):
+def get_coef(prompt):
+    print(prompt)
+    while True:
+        try:
+            coef_str = input()
+            coef = float(coef_str)
+            return coef
 
-    try:
-        coef_str = sys.argv[index]
-    except:
-        print(promt)
-        coef_str = input()
-
-    coef = float(coef_str)
-    return coef
+        except(IndexError, ValueError):
+            print(prompt)
 
 def get_roots(a, b, c):
 
@@ -18,8 +17,11 @@ def get_roots(a, b, c):
 
     D = b**2 - 4*a*c
     if D == 0:
-        root = -b/(2.0*a)
-        result.append(root)
+        root_y = -b/(2.0*a)
+        root1 = math.sqrt(root_y)
+        root2 = -math.sqrt(root_y)
+        result.append(root1)
+        result.append(root2)
     if D > 0:
         root_y1 = (-b - math.sqrt(D))/(2.0*a)
         root_y2 = (-b + math.sqrt(D))/(2.0*a)
@@ -36,11 +38,10 @@ def get_roots(a, b, c):
     unique_result = list(set(result))
     return unique_result
 
-def main():
-
-    a = get_coef("Введите коэффициент А", 1)
-    b = get_coef("Введите коэффициент В", 2)
-    c = get_coef("Введите коэффициент С", 3)
+def print_roots():
+    a = get_coef("Введите коэффициент А")
+    b = get_coef("Введите коэффициент В")
+    c = get_coef("Введите коэффициент С")
 
     roots = get_roots(a, b, c)
 
@@ -52,9 +53,10 @@ def main():
             print(f"x{1 + i} = {roots[i]}\n")
             i += 1
 
+
+
+def main():
+    print_roots()
+
 if __name__ == "__main__":
     main()
-        
-
-        
-

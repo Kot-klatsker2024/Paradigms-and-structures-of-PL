@@ -37,7 +37,8 @@ def get_roots(a, b, c):
             result.append(root4)
     unique_result = list(set(result))
     return unique_result
-
+1
+-
 def print_roots():
     a = get_coef("Введите коэффициент А")
     b = get_coef("Введите коэффициент В")
